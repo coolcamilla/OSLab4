@@ -19,3 +19,8 @@ int main(int argc, char* argv[]) {
 	//sleep(5);
 	return 0;
 }
+
+//to run as background process
+// ./ex2 3 &
+// in the first case i see a tree where each child creates more children (so in total 2^n processes)
+// in the second case i see a line of processes. so each process creates exactly 1 child
