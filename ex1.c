@@ -12,14 +12,17 @@ int main() {
 		if (pid == 0) {
 			clock_t start = clock();
 			printf("I am %d (child), my parent is %d \n", getpid(), getppid());
+			for (int k = 0; k < 1000000; k++) {}
 			clock_t end = clock();
-			printf("I am %d (child), I finished in %ld miliseconds \n", getpid(), end - start);
+			double ms = ((double)(end - start) * 1000) / CLOCKS_PER_SEC;
+			printf("I am %d (child), I finished in %.2f miliseconds \n", getpid(), ms);
 			exit(0);
 		}
 	}
 	for (int i = 0; i < 2; i++) wait(NULL);
 	clock_t main_end = clock();
-	printf("I am %d (parent), I finished in %ld miliseconds \n", getpid(), main_end - main_start);
+	double ms = ((double)(main_end - main_start) * 1000) / CLOCKS_PER_SEC;
+	printf("I am %d (parent), I finished in %.2f miliseconds \n", getpid(), ms);
 	exit(0);
 	return 0;
 	
